@@ -48,4 +48,48 @@ with open("../datasets/socks.csv",encoding = "utf-8-sig") as f:
 ```
 This code imports the csv we created adn then saves it as a list with the name data. 
 
+#### Sock Class: 
+Here is the code for my sock class: 
+```
+class sockType:  
+
+    def __init__(self,name):   
+        self.name = name
+        self.variation = []
+
+    def count_variations(self):
+        return len(self.variation)
+    
+    def add_variation(self,variation):
+        self.variation.append(variation)
+
+    def __repr__(self):
+        return f"{self.name},{self.variation},{self.count_variations()}"
+```
+
+The sock class was used to create sock objects. There were around 350 different socks in the API, however many of the socks were the same type of sock as others in the API, but they had different color combinations which made then seperatee objects in the API. However I wanted to use the Sock class to group all of those together. This class has a costructor method, a method to count the number of variations of a particular type of sock, and a method to add variaitons to a sock object. The repr method organizes this informations neatly for later. 
+
+#### Variations Class
+However my sock class was missing one thing. It wasn't able to store both all the variabtions of a sock and all the different colors of the sock variations. So for this reason I created a variations class. Here is the code for the variaitons class: 
+```
+class Variation: 
+    def __init__(self,variation_name,color_1,color_2):  
+        self.variation_name = variation_name
+        self.color_1 = color_1
+        self.color_2 = color_2
+        self.marker = ":"
+    
+    def getColor1(self): 
+        return(self.color_1)
+    
+    def getColor2(self): 
+        return(self.color_2)
+
+    def __repr__(self):
+        return f"{self.variation_name},{self.marker},{self.color_1},{self.color_2}"
+```
+The variations class picked up where the Sock class left off. Like the sock method it also keeps track of variaitions, but instead of grouping them together it looks at them individually and stores their colors as well. It has a constructor method, and two get color methods to get either color 1 or 2 of a particular variation. A repr method, like before, allows me to organize this information neatly later. 
+
+#### List All Socks
+
 ### Task 2: Which Sock Has the Most variations 
