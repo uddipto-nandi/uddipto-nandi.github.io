@@ -117,3 +117,56 @@ Here is what happens when you print all_socks: (warning its a lot!)
 Notice:This print of the all_socks dictionary contains each sock type, all of the variations under each type, all of the colors of the variations, and the number of variations a sock type has. 
 
 ### Task 2: Which Sock Has the Most variations 
+For this task I used a for loop to iterate through all_socks and a list to store the socks with the most variaitons. Here is the code for this task: 
+```
+list_most_variations = []
+highest_count = 0
+for name in all_socks:
+    if all_socks[name].count_variations() > highest_count: 
+        highest_count = all_socks[name].count_variations()
+        list_most_variations.clear()
+        list_most_variations.append(name)
+    elif all_socks[name].count_variations() == highest_count: 
+        list_most_variations.append(name)
+print()
+print(str(list_most_variations) + " all have the " + str(highest_count) + " variations, which is the highest number of variations.")
+```
+The code has two parts. The first part of the code checks what the highest number of variations a sock type can have is. It does this by comparing the variations of each sock to a highest count variable. If the sock type has a higher number than the stored number in the variable highest_count, then the numbeer is replaced and the code continues to iterat through the rest of all_socks to see if there is an even higher number of variations. Once it has found the highest number of variations, it iterates through all_socks one more time to add the names of the sock types with 8 variations (the highest number of variations) to a list called list_most_variations. 
+
+Here is my answer to task 2: 
+['argyle crew socks', 'color-blocked socks', 'frilly knee-high socks', 'holey tights', 'kiddie socks', 'mixed-tweed socks', 'no-show socks', 'semi-opaque socks', 'semi-opaque tights', 'sequin leggings', 'simple-accent socks', 'striped socks', 'striped tights', 'tube socks', 'ultra no-show socks', 'vivid leggings', 'vivid socks', 'vivid tights'] all have the 8 variations, which is the highest number of variations.
+
+### Task 3: Counting Colors
+For this task I used a dictionary with keys of each color and values would represent to count of that color. Here is the code for this task: 
+```
+dic_color_count = {}
+for sock in all_socks: 
+    for variation in all_socks[sock].variation:   
+        color1 = variation.getColor1()
+        color2 = variation.getColor2()
+        if color1 not in dic_color_count: 
+            dic_color_count[color1] = 1
+        elif color1 in dic_color_count: 
+            dic_color_count[color1] += 1
+
+        if color2 not in dic_color_count: 
+            dic_color_count[color2] = 1
+        elif color2 in dic_color_count: 
+            dic_color_count[color2] += 1
+print()
+print(dic_color_count)
+```
+
+Notice how it seperates color 1 and color 2 for all of the socks. This is necessary because the colors are seperated in the variations class, so I have to do the process for both color slots. How this code works is that it gets the colors and checks if the dictionary dic_color_count already has a key for that color and if it doesn't it creates a key and makes the value one. If it already has a key then it ads 1 to the value. It does it for both color 1 and 2 but it can use the same dictionary because it stores the colors in new variables color1 and color2. 
+
+Here is the printed dictionary: 
+{'Pink': 41, 'Red': 39, 'Green': 50, 'Light blue': 33, 'Orange': 27, 'Purple': 37, 'Blue': 47, 'Yellow': 33, 'Beige': 15, None: 178, 'White': 85, 'Black': 59, 'Brown': 11, 'Gray': 31, 'Colorful': 14}
+
+Notice how my output has a none count in it. This is because some of the socks have both the same color1 and color2, but those colors do not get double counted in color1 and color2 are the same. So there is this line of code in my variaions class that takes care of that: 
+```
+if color_2 == color_1: 
+        color_2 = None
+```
+So if the color1 and color2 are the same color2 gets set to none, so in the dictionary that none value also gets counted and it has a value of 178 meaning that 178 of the socks have the same color1 and color2. 
+
+### Task 4
